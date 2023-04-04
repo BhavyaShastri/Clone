@@ -5,10 +5,10 @@ int count=0;
 %}
 
 op [+-*/]
-letter [a-zA-Z]
+letter [a-zA-Z_]
 digit [0-9]
-id {letter}*|({letter}+{digit})+
-notid ({digit}{letter}+)
+id ({letter}+{digit}*)+
+notid ({digit}+{letter}*)+
 
 %%
 [\t\n]+
@@ -18,16 +18,10 @@ notid ({digit}{letter}+)
 {digit}* {printf("%s is not a identifier\n",yytext);}
 [$] return 0;
 %%
-yywrap(){}
-int main(int argc,char *argv[])
+int yywrap(){return 1;}
+int main()
 {
 yylex();
 printf("Total Number of IDentifiers: %d\n",count);
 return 0;
 }
-
-
-/*
-id ({letter}+{digit}+)|{letter}*
-notid {digit}+|({digit}+{letter}+)
-*/
