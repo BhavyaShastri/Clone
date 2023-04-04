@@ -25,3 +25,9 @@ yylex();
 printf("Total Number of IDentifiers: %d\n",count);
 return 0;
 }
+
+
+/*
+id ({letter}+{digit}+)|{letter}*
+notid {digit}+|({digit}+{letter}+)
+*/
