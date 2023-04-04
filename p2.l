@@ -1,25 +1,24 @@
 %{
-   int count=0;
+int count=0;
 %}
 
 op [+-*/]
 letter [a-zA-Z]
 digit [0-9]
-id {letter}*|({letter}{digit}+)
-notid ({digit}{letter}+)
+id {letter}*|({letter}{digit})+
+notid ({digit}{letter}+)|({digit})+
 
 %%
 [\t\n]+
-("int")|("float")|("char")|("default") {printf("%s is a keyword\n" , yytext);}
-{id} {printf("%s is an identifier\n" , yytext); count++;}
-{notid} {printf("%s is not an identifier\n" , yytext);}
+("int")|("float")|("char")|("case")|("default")|("if")|("for")|("printf")|("scanf") {printf("%s is a keyword\n",yytext);}
+{id} {printf("%s is a identifier\n",yytext);count++;}
+{notid} {printf("%s is not a identifier\n",yytext);}
+[$] return 0;
 %%
-
-yywrap(){ }
-int main()
+yywrap(){}
+int main(int argc,char *argv[])
 {
-   
-   yylex();
-   printf("Total identifiers: %d\n" , count);
-   return 0;
+yylex();
+printf("Total Number of IDentifiers: %d\n",count);
+return 0;
 }
