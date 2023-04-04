@@ -18,7 +18,6 @@ int main(int argc , int *argv)
 {
    
 yylex();
-printf("enter");
 printf("Total characters: %d\n Blanks: %d\n words:%d\n Lines:%d\n Lines:%d\n" , cc,sc,wc,lc,tc);
    return 0;
 }
